@@ -1,1 +1,3 @@
-# GIT INIT!
+#Building the Web Application for CC Fraud Detection with Stream Lit! 
+
+by Dymasius Yusuf Sitepu
