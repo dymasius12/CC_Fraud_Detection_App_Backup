@@ -12,9 +12,11 @@ import pickle
 # with open('random_forest_model.pkl', 'rb') as model_file:
 #     rf_model = pickle.load(model_file)
 
-# Load the ANN model
+# Load the ANN
+st.write("Loading ANN model...")
 with open('ann_model.pkl', 'rb') as model_file:
     ann_model = pickle.load(model_file)
+st.write("ANN model loaded successfully.")
 
 st.image('alpha-1.png', width=400)
 #END OF BANNER
