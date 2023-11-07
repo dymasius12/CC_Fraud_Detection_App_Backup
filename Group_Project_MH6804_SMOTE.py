@@ -514,6 +514,82 @@ results.loc[results['Model'] == 'Decision tree with SMOTE', 'ROC AUC'] = roc_auc
 results.loc[results['Model'] == 'Random Forest (n=100) with SMOTE', 'ROC AUC'] = roc_auc_rf_smote
 
 
+# ### Note: Please note the result above is after implementing SMOTE without Cross Validation
+
+# # SMOTE with Cross-Validation for Data imbalance
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+from imblearn.pipeline import Pipeline as imbpipeline
+from sklearn.model_selection import cross_validate
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from imblearn.over_sampling import SMOTE
+
+# Define the classifier
+dt_classifier = DecisionTreeClassifier(random_state=0)
+rf_classifier = RandomForestClassifier(random_state=0, n_estimators=100, criterion='entropy')
+
+# Define scoring metrics you want to use
+scoring = {'accuracy': 'accuracy', 'precision': 'precision', 'recall': 'recall', 'f1': 'f1'}
+
+# Create a pipeline with SMOTE and Decision Tree
+pipeline_dt = imbpipeline([
+    ('SMOTE', SMOTE(random_state=0)),
+    ('classifier', dt_classifier)
+])
+
+# Create a pipeline with SMOTE and Random Forest
+pipeline_rf = imbpipeline([
+    ('SMOTE', SMOTE(random_state=0)),
+    ('classifier', rf_classifier)
+])
+
+# Perform cross-validation and store results
+results_dt = cross_validate(pipeline_dt, X, y, cv=5, scoring=scoring)
+results_rf = cross_validate(pipeline_rf, X, y, cv=5, scoring=scoring)
+
+
+
+# Print the results
+print("Decision Tree with Cross-Validation and SMOTE:", results_dt)
+print("Random Forest with Cross-Validation and SMOTE:", results_rf)
+
+
+# In[ ]:
+
+
+type(results_dt)
+
+
+# In[ ]:
+
+
+results_dt = pd.DataFrame([results_dt])
+results_rf = pd.DataFrame([results_rf])
+results_dt['classifier'] = 'Decision Tree'
+results_rf['classifier'] = 'Random Forest'
+
+
+# In[ ]:
+
+
+results_dt
+
+
+# In[ ]:
+
+
+results_rf
+
+
 # In[ ]:
 
 

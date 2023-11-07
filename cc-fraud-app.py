@@ -6,6 +6,15 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 import imblearn
+import pickle
+
+# Load the Random Forest model
+# with open('random_forest_model.pkl', 'rb') as model_file:
+#     rf_model = pickle.load(model_file)
+
+# Load the ANN model
+with open('ann_model.pkl', 'rb') as model_file:
+    ann_model = pickle.load(model_file)
 
 st.image('alpha-1.png', width=400)
 #END OF BANNER
@@ -141,6 +150,21 @@ st.subheader('Class labels and their corresponding index number')
 st.subheader('Prediction')
 
 st.subheader('Prediction Probability')
+
+with st.expander("STEP 2: Model Prediction"):
+    st.write("""
+###### Wait for the Model to Predict the Result:
+             """)
+    
+# Predict the output using the loaded models
+#rf_prediction = rf_model.predict(df)
+ann_prediction = ann_model.predict(df)
+ann_prediction = (ann_prediction > 0.5)  # Threshold ANN predictions at 0.5
+
+# Display the predictions
+st.subheader('STEP 3: Prediction')
+#st.write("Random Forest Prediction:", rf_prediction)
+st.write("ANN Prediction:", ann_prediction)
 
 with st.expander("Credits & Acknowledgements:"):
     st.write("""
