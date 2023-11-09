@@ -5,7 +5,7 @@ import joblib
 #from tensorflow.keras.models import load_model
 
 # Load the Random Forest model
-rf_model = joblib.load('random_forest_model.pkl')
+rf_model = joblib.load('random_forest_smote.joblib')
 
 # Load the ANN model
 #st.write("Loading ANN model...")
