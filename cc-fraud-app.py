@@ -148,24 +148,20 @@ df = user_input_features()
 st.subheader('User Parameters Display:')
 st.write(df)
 
-st.subheader('Class labels and their corresponding index number')
-
-st.subheader('Prediction')
-
-st.subheader('Prediction Probability')
-
 # For the prediction part, you can use both models to predict as follows:
-with st.expander("STEP 2: Model Prediction"):
+with st.expander("STEP 2: Random Forest Model Prediction"):
     st.write("Wait for the Model to Predict the Result!")
 
     # Random Forest model prediction
     rf_prediction = rf_model.predict(df)
-    st.subheader('STEP 3: Random Forest Prediction')
-    
+
     if rf_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
         st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
     else:
         st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
+
+    st.subheader('STEP 3 INFO: Random Forest Confusion Matrix')
+    st.image('RF.png', width=400)
     
 # Predict the output using the loaded models
 #rf_prediction = rf_model.predict(df)
