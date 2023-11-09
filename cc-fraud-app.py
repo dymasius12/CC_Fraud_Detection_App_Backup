@@ -6,6 +6,7 @@ import joblib
 
 # Load the Random Forest model
 rf_model = joblib.load('random_forest_smote.joblib')
+xgboost_model = joblib.load('xgboost_smote.joblib')
 
 # Load the ANN model
 #st.write("Loading ANN model...")
@@ -55,8 +56,11 @@ It contains only numerical input variables which are the result of a PCA transfo
 Given the class imbalance ratio, we recommend measuring the accuracy using the Area Under the Precision-Recall Curve (AUPRC). Confusion matrix accuracy is not meaningful for unbalanced classification.
              """)
 
+with st.expander("STEP 1: Data Preprocessing"):
+    st.write("Data Imbalance:")
+    st.image()
 
-with st.expander("STEP 1: How to use this Machine Learning app?"):
+with st.expander("STEP 2: How to use this Machine Learning app?"):
     st.write("""
 ###### Step-By-Step Guide:
 1. Input your data at "Input User Parameter" on the sidebar
@@ -67,7 +71,7 @@ with st.expander("STEP 1: How to use this Machine Learning app?"):
              """)
 
 # For Sidebar User Input Parameter
-st.sidebar.header('User Input Parameter')
+st.sidebar.header('Your Input Parameter')
 st.sidebar.write("Note: input your data, amount = $$$")
 
 amount_mean = 88.34961925093133
@@ -145,12 +149,12 @@ df = user_input_features()
 # End of User Input Parameter
 
 # Displaying User parameters
-st.subheader('User Parameters Display:')
+st.subheader('Your Input Parameters Display:')
 st.write(df)
 
 # For the prediction
 with st.expander("STEP 2: Random Forest Model Prediction"):
-    st.write("Wait for the Model to Predict the Result!")
+    st.write("MODEL PREDICTION")
 
     # Random Forest model prediction
     rf_prediction = rf_model.predict(df)
@@ -162,22 +166,24 @@ with st.expander("STEP 2: Random Forest Model Prediction"):
 
     st.write("STEP 3 MODEL INFO: RF Confusion Matrix")
     st.image('RF.png', width=600)
+    st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
     st.image('RF_result.png', width=600)
 
-# For the prediction
 with st.expander("STEP 2: XGBoost Model Prediction"):
-    st.write("Wait for the Model to Predict the Result!")
+    st.write("MODEL PREDICTION")
 
     # Random Forest model prediction
-    rf_prediction = rf_model.predict(df)
+    xgboost_prediction = xgboost_model.predict(df)
 
-    if rf_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+    if xgboost_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
         st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
     else:
         st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
 
-    st.write("STEP 3 MODEL INFO: RF Confusion Matrix")
-    st.image('RF.png', width=600)
+    st.write("STEP 3 MODEL INFO: XGB Confusion Matrix")
+    st.image('XGB.png', width=600)
+    st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
+    st.image('XGB_result.png', width=600)
 
 with st.expander("Credits & Acknowledgements:"):
     st.write("""
