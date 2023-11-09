@@ -7,6 +7,9 @@ import joblib
 # Load the Random Forest model
 rf_model = joblib.load('random_forest_smote.joblib')
 xgboost_model = joblib.load('xgboost_smote.joblib')
+knn_model = joblib.load('knn_smote.joblib')
+dt_model = joblib.load('decision_tree_smote.joblib')
+lg_model = joblib.load('logistic_regression_smote.joblib')
 
 # Load the ANN model
 #st.write("Loading ANN model...")
@@ -154,7 +157,7 @@ st.subheader('Your Input Parameters Display:')
 st.write(df)
 
 # For the prediction
-with st.expander("STEP 2: Random Forest Model Prediction"):
+with st.expander("STEP 3: Random Forest Model Prediction"):
     st.write("MODEL PREDICTION")
 
     # Random Forest model prediction
@@ -165,12 +168,12 @@ with st.expander("STEP 2: Random Forest Model Prediction"):
     else:
         st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
 
-    st.write("STEP 3 MODEL INFO: RF Confusion Matrix")
+    st.write("STEP 4 MODEL INFO: RF Confusion Matrix")
     st.image('RF.png', width=600)
     st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
     st.image('RF_result.png', width=600)
 
-with st.expander("STEP 2: XGBoost Model Prediction"):
+with st.expander("STEP 3: XGBoost Model Prediction"):
     st.write("MODEL PREDICTION")
 
     # Random Forest model prediction
@@ -181,10 +184,58 @@ with st.expander("STEP 2: XGBoost Model Prediction"):
     else:
         st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
 
-    st.write("STEP 3 MODEL INFO: XGB Confusion Matrix")
+    st.write("STEP 4 MODEL INFO: XGB Confusion Matrix")
     st.image('XGB.png', width=600)
     st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
     st.image('XGB_result.png', width=600)
+
+with st.expander("STEP 3: KNN Model Prediction"):
+    st.write("MODEL PREDICTION")
+
+    # Random Forest model prediction
+    knn_prediction = knn_model.predict(df)
+
+    if knn_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+        st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
+    else:
+        st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
+
+    st.write("STEP 4 MODEL INFO: KNN Confusion Matrix")
+    st.image('knn.png', width=600)
+    st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
+    st.image('knn_result.png', width=600)
+
+with st.expander("STEP 3: Decision Tree Model Prediction"):
+    st.write("MODEL PREDICTION")
+
+    # Random Forest model prediction
+    dt_prediction = dt_model.predict(df)
+
+    if dt_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+        st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
+    else:
+        st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
+
+    st.write("STEP 4 MODEL INFO: DT Confusion Matrix")
+    st.image('dt.png', width=600)
+    st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
+    st.image('dt_result.png', width=600)
+
+with st.expander("STEP 3: Logistic Regression Model Prediction"):
+    st.write("MODEL PREDICTION")
+
+    # Random Forest model prediction
+    lg_prediction = lg_model.predict(df)
+
+    if lg_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+        st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
+    else:
+        st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
+
+    st.write("STEP 4 MODEL INFO: LG Confusion Matrix")
+    st.image('lg.png', width=600)
+    st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
+    st.image('lg_result.png', width=600)
 
 with st.expander("Credits & Acknowledgements:"):
     st.write("""
