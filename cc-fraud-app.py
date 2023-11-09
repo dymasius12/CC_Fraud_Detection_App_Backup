@@ -1,15 +1,16 @@
 import streamlit as st
-from tensorflow.keras.models import load_model
 import pandas as pd
+import joblib
+#from tensorflow.keras.models import load_model
+#from tensorflow.keras.models import load_model
 
 # Load the Random Forest model
-# with open('random_forest_model.pkl', 'rb') as model_file:
-#     rf_model = pickle.load(model_file)
+rf_model = joblib.load('random_forest_model.pkl')
 
 # Load the ANN model
-st.write("Loading ANN model...")
-ann_model = load_model('ann_model.h5')
-st.write("ANN model loaded successfully.")
+#st.write("Loading ANN model...")
+#ann_model = load_model('ann_model.h5')
+st.write("model loaded successfully.")
 
 st.image('alpha-1.png', width=400)
 #END OF BANNER
@@ -146,22 +147,26 @@ st.subheader('Prediction')
 
 st.subheader('Prediction Probability')
 
+# For the prediction part, you can use both models to predict as follows:
 with st.expander("STEP 2: Model Prediction"):
-    st.write("""
-###### Wait for the Model to Predict the Result:
-             """)
+    st.write("Wait for the Model to Predict the Result:")
+
+    # Random Forest model prediction
+    rf_prediction = rf_model.predict(df)
+    st.subheader('STEP 3: Random Forest Prediction')
+    st.write("Random Forest Prediction:", rf_prediction)
     
 # Predict the output using the loaded models
 #rf_prediction = rf_model.predict(df)
-ann_prediction = ann_model.predict(df)
-ann_prediction = (ann_prediction > 0.5)  # Threshold predictions at 0.5
-st.subheader('STEP 3: Prediction')
-st.write("ANN Prediction:", ann_prediction)
+#ann_prediction = ann_model.predict(df)
+#ann_prediction = (ann_prediction > 0.5)  # Threshold predictions at 0.5
+# st.subheader('STEP 3: Prediction')
+# st.write("ANN Prediction:", ann_prediction)
 
 # Display the predictions
-st.subheader('STEP 3: Prediction')
-#st.write("Random Forest Prediction:", rf_prediction)
-st.write("ANN Prediction:", ann_prediction)
+# st.subheader('STEP 3: Prediction')
+# #st.write("Random Forest Prediction:", rf_prediction)
+# st.write("ANN Prediction:", ann_prediction)
 
 with st.expander("Credits & Acknowledgements:"):
     st.write("""
