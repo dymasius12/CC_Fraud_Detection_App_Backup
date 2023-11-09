@@ -57,8 +57,9 @@ Given the class imbalance ratio, we recommend measuring the accuracy using the A
              """)
 
 with st.expander("STEP 1: Data Preprocessing"):
-    st.write("Data Imbalance:")
-    st.image()
+    st.write("Data Imbalance: Before vs After SMOTE")
+    st.image("before.png")
+    st.image("after.png")
 
 with st.expander("STEP 2: How to use this Machine Learning app?"):
     st.write("""
