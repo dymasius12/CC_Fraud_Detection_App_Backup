@@ -237,6 +237,49 @@ with st.expander("STEP 3: Logistic Regression Model Prediction"):
     st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
     st.image('lg_result.png', width=600)
 
+with st.expander("SUMMARY"):
+    st.write("MODEL SUMMARY")
+
+    st.write("RANDOM FOREST PREDICTION:")
+    if rf_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+        st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
+    else:
+        st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
+
+    st.write("XGBoost PREDICTION:")
+    if xgboost_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+        st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
+    else:
+        st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
+
+    st.write("KNN PREDICTION:")
+    if knn_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+        st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
+    else:
+        st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
+
+    st.write("LOGISTIC REGRESSION PREDICTION:")
+    if lg_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+        st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
+    else:
+        st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
+
+    st.write("DECISION TREE PREDICTION:")
+    if dt_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+        st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
+    else:
+        st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
+
+    st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
+    st.image('RF_result.png', width=600)
+    st.image('XGB_result.png', width=600)
+    st.image('knn_result.png', width=600)
+    st.image('lg_result.png', width=600)
+    st.image('dt_result.png', width=600)
+
+    st.write("ROC/AUC Curve")
+    st.image('ROC.png', width=600)
+
 with st.expander("Credits & Acknowledgements:"):
     st.write("""
 The dataset has been collected and analysed during a research collaboration of Worldline and the Machine Learning Group (http://mlg.ulb.ac.be) of ULB (Université Libre de Bruxelles) on big data mining and fraud detection.
