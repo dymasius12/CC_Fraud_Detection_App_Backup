@@ -70,6 +70,9 @@ with st.expander("STEP 1: How to use this Machine Learning app?"):
 st.sidebar.header('User Input Parameter')
 st.sidebar.write("Note: input your data, amount = $$$")
 
+amount_mean = 88.34961925093133
+amount_std = 250.1201092401885
+
 def user_input_features():
     amount = st.sidebar.slider('amount', 0, 25691, 1000)
     v1 = st.sidebar.slider('v1', -70.0, 120.0, 5.4)
@@ -100,8 +103,9 @@ def user_input_features():
     v26 = st.sidebar.slider('v26', -70.0, 120.0, 5.4)
     v27 = st.sidebar.slider('v27', -70.0, 120.0, 3.4)
     v28 = st.sidebar.slider('v28', -70.0, 120.0, 1.3)
+    # Normalize the amount using the mean and std from the training data
+    normalized_amount = (amount - amount_mean) / amount_std
     data = {
-            'amount': amount,
             'v1': v1,
             'v2': v2,
             'v3': v3,
@@ -130,6 +134,9 @@ def user_input_features():
             'v26': v26,
             'v27': v27,
             'v28': v28,
+            'amount': amount,
+            'normalizedAmount': normalized_amount
+            
             }
     features = pd.DataFrame(data, index=[0])
     return features
