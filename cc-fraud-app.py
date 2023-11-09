@@ -1,21 +1,14 @@
 import streamlit as st
-import numpy as np
+from tensorflow.keras.models import load_model
 import pandas as pd
-import sklearn
-import seaborn as sns
-import matplotlib.pyplot as plt
-import os
-import imblearn
-import pickle
 
 # Load the Random Forest model
 # with open('random_forest_model.pkl', 'rb') as model_file:
 #     rf_model = pickle.load(model_file)
 
-# Load the ANN
+# Load the ANN model
 st.write("Loading ANN model...")
-with open('ann_model.pkl', 'rb') as model_file:
-    ann_model = pickle.load(model_file)
+ann_model = load_model('ann_model.h5')
 st.write("ANN model loaded successfully.")
 
 st.image('alpha-1.png', width=400)
@@ -161,7 +154,9 @@ with st.expander("STEP 2: Model Prediction"):
 # Predict the output using the loaded models
 #rf_prediction = rf_model.predict(df)
 ann_prediction = ann_model.predict(df)
-ann_prediction = (ann_prediction > 0.5)  # Threshold ANN predictions at 0.5
+ann_prediction = (ann_prediction > 0.5)  # Threshold predictions at 0.5
+st.subheader('STEP 3: Prediction')
+st.write("ANN Prediction:", ann_prediction)
 
 # Display the predictions
 st.subheader('STEP 3: Prediction')
