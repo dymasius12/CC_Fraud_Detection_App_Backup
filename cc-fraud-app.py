@@ -148,7 +148,7 @@ df = user_input_features()
 st.subheader('User Parameters Display:')
 st.write(df)
 
-# For the prediction part, you can use both models to predict as follows:
+# For the prediction
 with st.expander("STEP 2: Random Forest Model Prediction"):
     st.write("Wait for the Model to Predict the Result!")
 
@@ -160,20 +160,24 @@ with st.expander("STEP 2: Random Forest Model Prediction"):
     else:
         st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
 
-    st.subheader('STEP 3 INFO: Random Forest Confusion Matrix')
-    st.image('RF.png', width=400)
-    
-# Predict the output using the loaded models
-#rf_prediction = rf_model.predict(df)
-#ann_prediction = ann_model.predict(df)
-#ann_prediction = (ann_prediction > 0.5)  # Threshold predictions at 0.5
-# st.subheader('STEP 3: Prediction')
-# st.write("ANN Prediction:", ann_prediction)
+    st.write("STEP 3 MODEL INFO: RF Confusion Matrix")
+    st.image('RF.png', width=600)
+    st.image('RF_result.png', width=600)
 
-# Display the predictions
-# st.subheader('STEP 3: Prediction')
-# #st.write("Random Forest Prediction:", rf_prediction)
-# st.write("ANN Prediction:", ann_prediction)
+# For the prediction
+with st.expander("STEP 2: XGBoost Model Prediction"):
+    st.write("Wait for the Model to Predict the Result!")
+
+    # Random Forest model prediction
+    rf_prediction = rf_model.predict(df)
+
+    if rf_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+        st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
+    else:
+        st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
+
+    st.write("STEP 3 MODEL INFO: RF Confusion Matrix")
+    st.image('RF.png', width=600)
 
 with st.expander("Credits & Acknowledgements:"):
     st.write("""
