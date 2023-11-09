@@ -75,48 +75,48 @@ amount_std = 250.1201092401885
 
 def user_input_features():
     amount = st.sidebar.slider('amount', 0, 25691, 1000)
-    v1 = st.sidebar.slider('v1', -2.312227, 120.0, 5.4)
-    v2 = st.sidebar.slider('v2', 1.951992, 120.0, 3.4)
-    v3 = st.sidebar.slider('v3', -1.609851, 120.0, 1.3)
-    v4 = st.sidebar.slider('v4', 3.997906, 120.0, 0.2)
-    v5 = st.sidebar.slider('v5', -0.522188, 120.0, 0.2)
-    v6 = st.sidebar.slider('v6', -1.426545, 120.0, 5.4)
-    v7 = st.sidebar.slider('v7', -2.537387, 120.0, 3.4)
-    v8 = st.sidebar.slider('v8', -1.391657, 120.0, 1.3)
-    v9 = st.sidebar.slider('v9', -2.770089, 120.0, 0.2)
-    v10 = st.sidebar.slider('v10', -2.772272, 120.0, 0.2)
-    v11 = st.sidebar.slider('v11', 3.202033, 120.0, 5.4)
-    v12 = st.sidebar.slider('v12', -2.899907, 120.0, 3.4)
-    v13 = st.sidebar.slider('v13', -0.595222, 120.0, 1.3)
-    v14 = st.sidebar.slider('v14', -4.289254, 120.0, 0.2)
-    v15 = st.sidebar.slider('v15', 0.389724, 120.0, 0.2)
-    v16 = st.sidebar.slider('v16', -1.140747, 120.0, 5.4)
-    v17 = st.sidebar.slider('v17', -2.830056, 120.0, 3.4)
-    v18 = st.sidebar.slider('v18', -0.016822, 120.0, 1.3)
-    v19 = st.sidebar.slider('v19', 0.416956, 120.0, 0.2)
-    v20 = st.sidebar.slider('v20', 0.126911, 120.0, 0.2)
-    v21 = st.sidebar.slider('v21', 0.517232, 120.0, 5.4)
-    v22 = st.sidebar.slider('v22', -0.035049, 120.0, 3.4)
-    v23 = st.sidebar.slider('v23', -0.465211, 120.0, 1.3)
-    v24 = st.sidebar.slider('v24', 0.320198, 120.0, 0.2)
-    v25 = st.sidebar.slider('v25', 0.044519, 120.0, 0.2)
-    v26 = st.sidebar.slider('v26', 0.177840, 120.0, 5.4)
-    v27 = st.sidebar.slider('v27', 0.261145, 120.0, 3.4)
-    v28 = st.sidebar.slider('v28', -0.143276, 120.0, 1.3)
+    v1 = st.sidebar.slider('v1', -70.0, 120.0, -2.312227)
+    #v2 = st.sidebar.slider('v2', 1.951992, 120.0, 3.4)
+    #v3 = st.sidebar.slider('v3', -1.609851, 120.0, 1.3)
+    #v4 = st.sidebar.slider('v4', 3.997906, 120.0, 0.2)
+    #v5 = st.sidebar.slider('v5', -0.522188, 120.0, 0.2)
+    v6 = st.sidebar.slider('v6', -70.0, 120.0, -1.426545)
+    v7 = st.sidebar.slider('v7', -70.0, 120.0, -2.537387)
+    #v8 = st.sidebar.slider('v8', -1.391657, 120.0, 1.3)
+    v9 = st.sidebar.slider('v9', -70.0, 120.0, -2.770089)
+    v10 = st.sidebar.slider('v10', -70.0, 120.0, -2.772272)
+    #v11 = st.sidebar.slider('v11', 3.202033, 120.0, 5.4)
+    v12 = st.sidebar.slider('v12', -70.0, 120.0, -2.899907)
+    v13 = st.sidebar.slider('v13', -70.0, 120.0, -0.595222)
+    v14 = st.sidebar.slider('v14', -70.0, 120.0, -4.289254)
+    v15 = st.sidebar.slider('v15', -70.0, 120.0, 0.389724)
+    v16 = st.sidebar.slider('v16', -70.0, 120.0, -1.140747)
+    v17 = st.sidebar.slider('v17', -70.0, 120.0, -1.140747)
+    v18 = st.sidebar.slider('v18', -70.0, 120.0, -1.140747)
+    #v19 = st.sidebar.slider('v19', 0.416956, 120.0, 0.2)
+    #v20 = st.sidebar.slider('v20', 0.126911, 120.0, 0.2)
+    #v21 = st.sidebar.slider('v21', 0.517232, 120.0, 5.4)
+    #v22 = st.sidebar.slider('v22', -0.035049, 120.0, 3.4)
+    #v23 = st.sidebar.slider('v23', -0.465211, 120.0, 1.3)
+    #v24 = st.sidebar.slider('v24', 0.320198, 120.0, 0.2)
+    #v25 = st.sidebar.slider('v25', 0.044519, 120.0, 0.2)
+    #v26 = st.sidebar.slider('v26', 0.177840, 120.0, 5.4)
+    #v27 = st.sidebar.slider('v27', 0.261145, 120.0, 3.4)
+    #v28 = st.sidebar.slider('v28', -0.143276, 120.0, 1.3)
     # Normalize the amount using the mean and std from the training data
     normalized_amount = (amount - amount_mean) / amount_std
     data = {
             'v1': v1,
-            'v2': v2,
-            'v3': v3,
-            'v4': v4,
-            'v5': v5,
+            'v2': 0.2,
+            'v3': 0.2,
+            'v4': 0.2,
+            'v5': 0.2,
             'v6': v6,
             'v7': v7,
-            'v8': v8,
+            'v8': 0.2,
             'v9': v9,
             'v10': v10,
-            'v11': v11,
+            'v11': 0.2,
             'v12': v12,
             'v13': v13,
             'v14': v14,
@@ -124,16 +124,16 @@ def user_input_features():
             'v16': v16,
             'v17': v17,
             'v18': v18,
-            'v19': v19,
-            'v20': v20,
-            'v21': v21,
-            'v22': v22,
-            'v23': v23,
-            'v24': v24,
-            'v25': v25,
-            'v26': v26,
-            'v27': v27,
-            'v28': v28,
+            'v19': 0.2,
+            'v20': 0.2,
+            'v21': 0.2,
+            'v22': 0.2,
+            'v23': 0.2,
+            'v24': 0.2,
+            'v25': 0.2,
+            'v26': 0.2,
+            'v27': 0.2,
+            'v28': 0.2,
             'amount': amount,
             'normalizedAmount': normalized_amount
             
@@ -156,12 +156,16 @@ st.subheader('Prediction Probability')
 
 # For the prediction part, you can use both models to predict as follows:
 with st.expander("STEP 2: Model Prediction"):
-    st.write("Wait for the Model to Predict the Result:")
+    st.write("Wait for the Model to Predict the Result!")
 
     # Random Forest model prediction
     rf_prediction = rf_model.predict(df)
     st.subheader('STEP 3: Random Forest Prediction')
-    st.write("Random Forest Prediction:", rf_prediction)
+    
+    if rf_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+        st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
+    else:
+        st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
     
 # Predict the output using the loaded models
 #rf_prediction = rf_model.predict(df)
