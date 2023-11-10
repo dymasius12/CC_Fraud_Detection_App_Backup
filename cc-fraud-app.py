@@ -285,7 +285,13 @@ with st.expander("SUMMARY"):
     if dt_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
         st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
     else:
-        st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
+        st.success("YOU ARE A GOOD PERSON! REAL!") 
+        
+    st.write("MULTI LAYER PERCEPTRON PREDICTION:")
+    if mlp_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+        st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
+    else:
+        st.success("YOU ARE A GOOD PERSON! REAL!") # Displays the message in green
 
     st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
     st.image('RF_result.png', width=600)
