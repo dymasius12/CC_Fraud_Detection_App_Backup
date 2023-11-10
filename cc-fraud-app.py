@@ -300,14 +300,19 @@ with st.expander("SUMMARY"):
     st.image('lg_result.png', width=600)
     st.image('dt_result.png', width=600)
     st.image('mlp_result.png', width=600)
+    st.write("ACCURACY = (True Positve + True Negative)/TOTAL")
+    st.write("RECALL = (True Positve)/PREDICTED Result")
+    st.write("RECALL = Out of TOTAL positive, what percentage is PREDICTED positive")
+    st.write("PRECISION = (True Positve)/ACTUAL Result")
+    st.write("PRECISION = Out of positive PREDICTION, what percentage is TRULY positive")
 
     st.write("ROC/AUC Curve")
     st.image('ROC.png', width=600)
 
-with st.expander("STEP 5: PARAMETER TUNING"):
-    st.write("RANDOM FOREST PARAMETER TUNING")
+# with st.expander("STEP 5: PARAMETER TUNING"):
+#     st.write("RANDOM FOREST PARAMETER TUNING")
 
-    st.write("LOGISTIC REGRESSION PARAMETER TUNING")
+#     st.write("LOGISTIC REGRESSION PARAMETER TUNING")
 
 with st.expander("Credits & Acknowledgements:"):
     st.write("""
