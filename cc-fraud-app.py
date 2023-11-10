@@ -11,6 +11,7 @@ knn_model = joblib.load('knn_smote.joblib')
 dt_model = joblib.load('decision_tree_smote.joblib')
 lg_model = joblib.load('logistic_regression_smote.joblib')
 mlp_model = joblib.load('mlp_classifier.joblib')
+best_rfc_model = joblib.load('random_forest_best_smote.joblib')
 
 # Load the ANN model
 #st.write("Loading ANN model...")
@@ -309,11 +310,37 @@ with st.expander("SUMMARY"):
     st.write("ROC/AUC Curve")
     st.image('ROC.png', width=600)
 
-# with st.expander("STEP 5: PARAMETER TUNING"):
-#     st.write("RANDOM FOREST PARAMETER TUNING")
+with st.expander("STEP 5: PARAMETER TUNING"):
+    st.write("RANDOM FOREST PARAMETER TUNING")
 
-#     st.write("LOGISTIC REGRESSION PARAMETER TUNING")
+    # Random Forest BEST model prediction
+    best_rfc_prediction = best_rfc_model.predict(df)
 
+    if best_rfc_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+        st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
+    else:
+        st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
+
+    st.write("STEP 5 MODEL INFO: BEST RFC Confusion Matrix")
+    st.image('best_rfc_result.png', width=600)
+    st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
+    st.image('best_rfc.png', width=600)
+
+    st.write("ROC Curve with Best RFC")
+    st.image('best_rfc_com.png', width=600)
+    #st.write("LOGISTIC REGRESSION PARAMETER TUNING")
+
+with st.expander("CONCLUSION"):
+    st.write("""
+Balanced Performance: The Random Forest model with SMOTE preprocessing exhibits a high level of accuracy (99.9544%) and precision (88.5714%), which is essential in fraud detection to minimize the number of false positives—that is, legitimate transactions that are incorrectly flagged as fraudulent.
+
+High AUC Score: With an AUC score of 0.97, the Random Forest model demonstrates a strong ability to distinguish between fraudulent and non-fraudulent transactions. A high AUC score indicates that the model has a high rate of true positive predictions relative to the false positive rate, which is critical in fraud detection scenarios where the cost of false negatives is high.
+
+Generalization Capability: Random Forest is less likely to overfit than decision trees because it takes the average of multiple decision trees trained on subsets of the data, improving the model's generalization to new, unseen data.
+
+Operational Efficiency: Due to its relatively high precision, the Random Forest model will likely result in fewer false alarms compared to models with lower precision, reducing the operational burden of manual fraud investigation. This operational efficiency is important for maintaining customer trust and satisfaction.
+""")
+    
 with st.expander("Credits & Acknowledgements:"):
     st.write("""
 The dataset has been collected and analysed during a research collaboration of Worldline and the Machine Learning Group (http://mlg.ulb.ac.be) of ULB (Université Libre de Bruxelles) on big data mining and fraud detection.
