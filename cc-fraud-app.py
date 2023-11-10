@@ -252,7 +252,7 @@ with st.expander("STEP 3: Multi Layer Perceptron Model Prediction"):
     st.write("STEP 4 MODEL INFO: MLP Confusion Matrix")
     st.image('mlp.png', width=600)
     st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
-    st.image('lg_result.png', width=600)
+    st.image('mlp_result.png', width=600)
 
 with st.expander("SUMMARY"):
     st.write("MODEL SUMMARY")
@@ -299,6 +299,7 @@ with st.expander("SUMMARY"):
     st.image('knn_result.png', width=600)
     st.image('lg_result.png', width=600)
     st.image('dt_result.png', width=600)
+    st.image('mlp_result.png', width=600)
 
     st.write("ROC/AUC Curve")
     st.image('ROC.png', width=600)
