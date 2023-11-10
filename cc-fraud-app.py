@@ -10,6 +10,7 @@ xgboost_model = joblib.load('xgboost_smote.joblib')
 knn_model = joblib.load('knn_smote.joblib')
 dt_model = joblib.load('decision_tree_smote.joblib')
 lg_model = joblib.load('logistic_regression_smote.joblib')
+mlp_model = joblib.load('mlp_classifier.joblib')
 
 # Load the ANN model
 #st.write("Loading ANN model...")
@@ -237,6 +238,22 @@ with st.expander("STEP 3: Logistic Regression Model Prediction"):
     st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
     st.image('lg_result.png', width=600)
 
+with st.expander("STEP 3: Multi Layer Perceptron Model Prediction"):
+    st.write("MODEL PREDICTION")
+
+    # Random Forest model prediction
+    mlp_prediction = mlp_model.predict(df)
+
+    if mlp_prediction[0] == 1:  # Assuming the output is [1] for fraud and [0] for non-fraud
+        st.error("YOU ARE A FRAUD! GOTCHA!")  # Displays the message in red
+    else:
+        st.success("YOU ARE A GOOD PERSON! REAL!")  # Displays the message in green
+
+    st.write("STEP 4 MODEL INFO: MLP Confusion Matrix")
+    st.image('mlp.png', width=600)
+    st.write("Accuracy, Precision, Recall, F1 Score, TPR, FPR, TNR, FNR")
+    st.image('lg_result.png', width=600)
+
 with st.expander("SUMMARY"):
     st.write("MODEL SUMMARY")
 
@@ -279,6 +296,11 @@ with st.expander("SUMMARY"):
 
     st.write("ROC/AUC Curve")
     st.image('ROC.png', width=600)
+
+with st.expander("STEP 5: PARAMETER TUNING"):
+    st.write("RANDOM FOREST PARAMETER TUNING")
+
+    st.write("LOGISTIC REGRESSION PARAMETER TUNING")
 
 with st.expander("Credits & Acknowledgements:"):
     st.write("""
